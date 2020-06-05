@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Implements hook_object_ingested().
+ *
+ *
+ *
+ * @param  \AbstractObject  $object
+ */
+function islandora_apply_embargo_object_ingested(AbstractObject $object) {
+  if (isset($object['MODS'])) {
+    module_load_include('inc', 'islandora_apply_embargo', 'includes/utilities');
+    islandora_apply_embargo($object);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function islandora_apply_embargo_form_bd_ui_settings_alter(&$form, &$form_state, $form_id) {
+  $form['bd_ui_tabs']['iae'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Apply Embargo on Ingest'),
+    'islandora_apply_embargo_mods_xpath' => array(
+      '#type' => 'textfield',
+      '#title' => t('XPath of embargo date in MODS.'),
+      '#description' => t('When provided, MODS records of newly ingested objects will be inspected for an embargo date at the xpath provided, and if found, the object will have an object-level embargo applied, expiring at the date provided. "indefinite" is an option, as is any xsd:DateTime valid date string. Include "mods:" namespace prefixing in your xpath. E.g. <em>//mods:originInfo/mods:dateOther[@type="embargoDate"]</em>. Leave blank to disable embargoing objects upon ingest.'),
+      '#default_value' => variable_get('islandora_apply_embargo_mods_xpath', ''),
+      '#size' => 120,
+      '#maxlength' => 512,
+      '#required' => FALSE,
+
+    ),
+  );
+}

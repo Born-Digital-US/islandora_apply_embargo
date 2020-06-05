@@ -1,0 +1,5 @@
+name = Islandora Apply Embargo
+package = BD
+description = Functionality for applying embargos upon ingest, and in batches.
+core = 7.x
+dependencies[] = islandora_scholar_embargo
