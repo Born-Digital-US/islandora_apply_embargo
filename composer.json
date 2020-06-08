@@ -1,0 +1,14 @@
+{
+"description": "Islandora Apply Embargo",
+"authors": [
+        {
+            "name": "Pat Dunlavey",
+            "email": "pat@born-digital.com",
+            "homepage": "http://www.born-digital.com",
+            "role": "Lead Developer"
+        }
+    ],
+   "license": "GPL-2.0-or-later",
+   "type": "drupal-module-islandora",
+   "name": "born-digital-us/islandora_apply_embargo"
+}
