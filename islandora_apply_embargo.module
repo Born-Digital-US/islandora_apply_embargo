@@ -7,7 +7,7 @@
  *
  * @param  \AbstractObject  $object
  */
-function islandora_apply_embargo_object_ingested(AbstractObject $object) {
+function islandora_apply_embargo_islandora_object_ingested(AbstractObject $object) {
   if (isset($object['MODS'])) {
     module_load_include('inc', 'islandora_apply_embargo', 'includes/utilities');
     islandora_apply_embargo($object);
